@@ -4,7 +4,7 @@
             <a class="navbar-brand" href="/" style="color:#777"><span style="font-size:15pt">&#9820;</span> Videoclub</a>
         </div>
         
-        @if( true || Auth::check() )
+        @if( Auth::check() )
         <ul class="nav navbar-nav">
             <li class="{{ Request::is('catalog') && ! Request::is('catalog/create') ? 'active' : ''}}">
                 <a href="{{ url('/catalog') }}">
@@ -21,9 +21,9 @@
         </ul>
         <ul class="nav navbar-nav navbar-right">
             <li>
-                <form action="{{ url('/logout') }}" method="POST" style="display:inline">
+                <form action="{{ url('/logout') }}" method="POST">
                     {{ csrf_field() }}
-                    <button type="submit" class="btn btn-link nav-link" style="display:inline;cursor:pointer">
+                    <button type="submit" class="btn btn-link nav-link">
                         <span class="glyphicon glyphicon-log-in"></span>
                         Cerrar sesión
                     </button>

@@ -18,7 +18,11 @@ Route::group(['middleware' => 'auth'], function() {
 
 	Route::get('catalog/show/{id}', 'CatalogController@getShow');
 
-	Route::post('catalog/show/{id}', 'CatalogController@postShow'); //para alquilar (o devolver) y eliminar
+	Route::put('catalog/rent/{id}', 'CatalogController@putRent');
+
+	Route::put('catalog/return/{id}', 'CatalogController@putReturn');
+
+	Route::delete('catalog/delete/{id}', 'CatalogController@deleteMovie');
 
 	Route::get('catalog/create', 'CatalogController@getCreate');
 

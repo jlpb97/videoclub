@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Movie;
+use Krucas\Notification\Facades\Notification;
 
 class CatalogController extends Controller
 {
@@ -19,16 +20,27 @@ class CatalogController extends Controller
         return view('catalog.show')->with('pelicula', $movie);
     }
 
-    public function postShow(Request $request, $id) {
+    public function putRent($id) {
         $movie = Movie::findOrFail($id);
-        if($request->accion == "eliminar") {
-            $movie->delete();
-            return redirect('/catalog');
-        } else {
-            $movie->rented = $request->accion == 'alquilar';
-            $movie->save();
-            return redirect('/catalog/show/' . $id);
-        }
+        $movie->rented = true;
+        $movie->save();
+        Notification::success('Película alquilada');
+        return redirect('/catalog/show/' . $id);
+    }
+
+    public function putReturn($id) {
+        $movie = Movie::findOrFail($id);
+        $movie->rented = false;
+        $movie->save();
+        Notification::success('Película devuelta');
+        return redirect('/catalog/show/' . $id);
+    }
+
+    public function deleteMovie($id) {
+        $movie = Movie::findOrFail($id);
+        $movie->delete();
+        Notification::info('Película eliminada');
+        return redirect('/catalog');
     }
 
     public function getCreate() {
@@ -43,6 +55,7 @@ class CatalogController extends Controller
         $movie->poster = $request->input('poster');
         $movie->synopsis = $request->input('synopsis');
         $movie->save();
+        Notification::success('La película se ha guardado correctamente');
         return redirect('/catalog');
     }
 
@@ -59,6 +72,7 @@ class CatalogController extends Controller
         $movie->poster = $request->input('poster');
         $movie->synopsis = $request->input('synopsis');
         $movie->save();
+        Notification::success('La película se ha modificado correctamente');
         return redirect('/catalog/show/' . $id);
     }
 }

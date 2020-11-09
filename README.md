@@ -6,13 +6,17 @@ Demo disponible en el siguiente enlace: [http://videoclub-web.herokuapp.com/](ht
 
 La primera carga puede tardar en responder debido a que el servidor deberá levantarse (30 segundos).
 
+Puede usar el siguiente usuario para el login:  
+E-Mail Address: `admin1@email.com`  
+Password: `12345`  
+
 # Install
 
-php composer.phar install
+`php composer.phar install`
 
-php artisan migrate
+`php artisan migrate`
 
-php artisan db:seed
+`php artisan db:seed`
 
 # Screens
 

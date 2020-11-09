@@ -1,5 +1,11 @@
 # Videoclub
 
+# Demo
+
+Demo disponible en el siguiente enlace: [http://videoclub-web.herokuapp.com/](http://videoclub-web.herokuapp.com/)
+
+La primera carga puede tardar en responder debido a que el servidor deberá levantarse (30 segundos).
+
 # Install
 
 php composer.phar install
